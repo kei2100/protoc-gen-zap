@@ -52,6 +52,20 @@ func (u *Parent) MarshalLogObject(enc zapcore.ObjectEncoder) error {
 	return nil
 }
 
+func (u *Event) MarshalLogObject(enc zapcore.ObjectEncoder) error {
+	if u == nil {
+		return nil
+	}
+
+	enc.AddString("Id:", u.Id)
+
+	enc.AddObject("GetUpdate():", u.GetUpdate())
+
+	enc.AddObject("GetDelete():", u.GetDelete())
+
+	return nil
+}
+
 func (u *ServiceMsg) MarshalLogObject(enc zapcore.ObjectEncoder) error {
 	if u == nil {
 		return nil
@@ -77,6 +91,26 @@ func (u *Parent_Child) MarshalLogObject(enc zapcore.ObjectEncoder) error {
 }
 
 func (u *Parent_Child_GrandChild) MarshalLogObject(enc zapcore.ObjectEncoder) error {
+	if u == nil {
+		return nil
+	}
+
+	enc.AddString("Id:", u.Id)
+
+	return nil
+}
+
+func (u *Event_Update) MarshalLogObject(enc zapcore.ObjectEncoder) error {
+	if u == nil {
+		return nil
+	}
+
+	enc.AddString("Id:", u.Id)
+
+	return nil
+}
+
+func (u *Event_Delete) MarshalLogObject(enc zapcore.ObjectEncoder) error {
 	if u == nil {
 		return nil
 	}

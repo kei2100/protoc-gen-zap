@@ -32,6 +32,22 @@ message Parent {
     }
 }
 
+message Event {
+    string id = 1;
+
+    oneof event {
+        Update update = 3;
+        Delete delete = 4;
+    }
+
+    message Update {
+        string id = 1;
+    }
+    message Delete {
+        string id = 1;
+    }
+}
+
 message ServiceMsg {
     string id = 1;
     string name = 2;
