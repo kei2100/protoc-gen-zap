@@ -57,7 +57,7 @@ func (m *zapGen) Execute(targets map[string]pgs.File, packages map[string]pgs.Pa
 				}
 				r := zapField{
 					Redact:      redact,
-					Name:        v.Name().UpperCamelCase().String(),
+					Name:        v.Name().String(),
 					Accessor:    accessor,
 					Type:        v.Descriptor().Type.String(),
 					Label:       v.Descriptor().GetLabel().String(),

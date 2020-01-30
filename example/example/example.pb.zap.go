@@ -11,31 +11,31 @@ func (u *User) MarshalLogObject(enc zapcore.ObjectEncoder) error {
 		return nil
 	}
 
-	enc.AddString("Id:", u.Id)
+	enc.AddString("id", u.Id)
 
-	enc.AddString("PhysicalDesk:", u.PhysicalDesk)
+	enc.AddString("physical_desk", u.PhysicalDesk)
 
-	enc.AddObject("Service:", u.Service)
+	enc.AddObject("service", u.Service)
 
-	BlockedArrMarshaller := func(enc zapcore.ArrayEncoder) error {
+	blockedArrMarshaller := func(enc zapcore.ArrayEncoder) error {
 		for _, v := range u.Blocked {
 			enc.AppendString(v)
 
 		}
 		return nil
 	}
-	enc.AddArray("Blocked:", zapcore.ArrayMarshalerFunc(BlockedArrMarshaller))
+	enc.AddArray("blocked", zapcore.ArrayMarshalerFunc(blockedArrMarshaller))
 
 	// TODO optimize map value type
-	enc.AddReflected("Extra:", u.Extra)
+	enc.AddReflected("extra", u.Extra)
 
-	ListArrMarshaller := func(enc zapcore.ArrayEncoder) error {
+	listArrMarshaller := func(enc zapcore.ArrayEncoder) error {
 		for _, v := range u.List {
 			enc.AppendObject(v)
 		}
 		return nil
 	}
-	enc.AddArray("List:", zapcore.ArrayMarshalerFunc(ListArrMarshaller))
+	enc.AddArray("list", zapcore.ArrayMarshalerFunc(listArrMarshaller))
 
 	return nil
 }
@@ -45,9 +45,9 @@ func (u *Parent) MarshalLogObject(enc zapcore.ObjectEncoder) error {
 		return nil
 	}
 
-	enc.AddString("Id:", u.Id)
+	enc.AddString("id", u.Id)
 
-	enc.AddObject("Child:", u.Child)
+	enc.AddObject("child", u.Child)
 
 	return nil
 }
@@ -57,11 +57,11 @@ func (u *Event) MarshalLogObject(enc zapcore.ObjectEncoder) error {
 		return nil
 	}
 
-	enc.AddString("Id:", u.Id)
+	enc.AddString("id", u.Id)
 
-	enc.AddObject("Update:", u.GetUpdate())
+	enc.AddObject("update", u.GetUpdate())
 
-	enc.AddObject("Delete:", u.GetDelete())
+	enc.AddObject("delete", u.GetDelete())
 
 	return nil
 }
@@ -71,9 +71,9 @@ func (u *ServiceMsg) MarshalLogObject(enc zapcore.ObjectEncoder) error {
 		return nil
 	}
 
-	enc.AddString("Id:", u.Id)
+	enc.AddString("id", u.Id)
 
-	enc.AddString("Name:", u.Name)
+	enc.AddString("name", u.Name)
 
 	return nil
 }
@@ -83,9 +83,9 @@ func (u *Parent_Child) MarshalLogObject(enc zapcore.ObjectEncoder) error {
 		return nil
 	}
 
-	enc.AddString("Id:", u.Id)
+	enc.AddString("id", u.Id)
 
-	enc.AddObject("GrandChild:", u.GrandChild)
+	enc.AddObject("grand_child", u.GrandChild)
 
 	return nil
 }
@@ -95,7 +95,7 @@ func (u *Parent_Child_GrandChild) MarshalLogObject(enc zapcore.ObjectEncoder) er
 		return nil
 	}
 
-	enc.AddString("Id:", u.Id)
+	enc.AddString("id", u.Id)
 
 	return nil
 }
@@ -105,7 +105,7 @@ func (u *Event_Update) MarshalLogObject(enc zapcore.ObjectEncoder) error {
 		return nil
 	}
 
-	enc.AddString("Id:", u.Id)
+	enc.AddString("id", u.Id)
 
 	return nil
 }
@@ -115,7 +115,7 @@ func (u *Event_Delete) MarshalLogObject(enc zapcore.ObjectEncoder) error {
 		return nil
 	}
 
-	enc.AddString("Id:", u.Id)
+	enc.AddString("id", u.Id)
 
 	return nil
 }
