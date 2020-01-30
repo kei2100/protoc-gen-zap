@@ -26,16 +26,12 @@ func (u *User) MarshalLogObject(enc zapcore.ObjectEncoder) error {
 	}
 	enc.AddArray("Blocked:", zapcore.ArrayMarshalerFunc(BlockedArrMarshaller))
 
-	if _, ok := interface{}(u.Extra).(zapcore.ObjectMarshaler); ok {
-		enc.AddObject("Extra:", u.Extra)
-	} else {
-		enc.AddReflected("Extra:", u.Extra)
-	}
+	// TODO optimize map value type
+	enc.AddReflected("Extra:", u.Extra)
 
 	ListArrMarshaller := func(enc zapcore.ArrayEncoder) error {
 		for _, v := range u.List {
 			enc.AppendObject(v)
-
 		}
 		return nil
 	}

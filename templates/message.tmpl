@@ -248,13 +248,14 @@ func (u *{{.Name}}) MarshalLogObject(enc zapcore.ObjectEncoder) error {
                     {{end}}
 
                 {{ else if eq .Type "TYPE_MESSAGE"}}
-
-                    {{if and  .SamePackage  ( not .FType.IsMap)}}
+                    {{if .FType.IsMap }}
+                        // TODO optimize map value type
+                        enc.AddReflected("{{.Name}}:", u.{{.Accessor}})
+                    {{else if .SamePackage}}
                         {{if .FType.IsRepeated}}
                             {{.Name}}ArrMarshaller := func (enc zapcore.ArrayEncoder) error {
                                     for _, v := range u.{{.Accessor}}{
                                         enc.AppendObject(v)
-
                                     }
                                     return nil
                                 }
@@ -262,18 +263,32 @@ func (u *{{.Name}}) MarshalLogObject(enc zapcore.ObjectEncoder) error {
 
                         {{else}}
                             enc.AddObject("{{.Name}}:", u.{{.Accessor}})
-
                         {{end}}
 
                     {{else if  eq .TypeName ".google.protobuf.Timestamp"}}
                           time{{.Name}},_ := ptypes.Timestamp(u.{{.Accessor}})
                           enc.AddTime("{{.Name}}:", time{{.Name}})
                     {{else}}
-                        if _, ok := interface{}(u.{{.Accessor}}).(zapcore.ObjectMarshaler); ok {
-                            enc.AddObject("{{.Name}}:", u.{{.Accessor}})
-                        } else {
-                            enc.AddReflected("{{.Name}}:", u.{{.Accessor}})
-                        }
+                        {{if .FType.IsRepeated}}
+                            {{.Name}}ArrMarshaller := func (enc zapcore.ArrayEncoder) error {
+                                for _, v := range u.{{.Accessor}}{
+                                    if obj, ok := interface{}(v).(zapcore.ObjectMarshaler); ok {
+                                        enc.AppendObject(obj)
+                                    } else {
+                                        enc.AppendReflected(v)
+                                    }
+                                }
+                                return nil
+                            }
+                            enc.AddArray("{{.Name}}:", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
+
+                        {{else}}
+                            if obj, ok := interface{}(u.{{.Accessor}}).(zapcore.ObjectMarshaler); ok {
+                                enc.AddObject("{{.Name}}:", obj)
+                            } else {
+                                enc.AddReflected("{{.Name}}:", u.{{.Accessor}})
+                            }
+                        {{end}}
                     {{end}}
 
                 {{ else if eq .Type "TYPE_ENUM"}}
@@ -292,8 +307,8 @@ func (u *{{.Name}}) MarshalLogObject(enc zapcore.ObjectEncoder) error {
                     {{end}}
 
                 {{ else }}
-                    if _, ok := interface{}(u.{{.Accessor}}).(zapcore.ObjectMarshaler); ok {
-                        enc.AddObject("{{.Name}}:", u.{{.Accessor}})
+                    if obj, ok := interface{}(u.{{.Accessor}}).(zapcore.ObjectMarshaler); ok {
+                        enc.AddObject("{{.Name}}:", obj)
                     } else {
                         enc.AddReflected("{{.Name}}:", u.{{.Accessor}})
                     }
