@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github.com/lyft/protoc-gen-star"
-	"github.com/lyft/protoc-gen-star/lang/go"
-	"github.com/shankulkarni/protoc-gen-zap/zap"
+	pgs "github.com/lyft/protoc-gen-star"
+	pgsgo "github.com/lyft/protoc-gen-star/lang/go"
+	zappb "github.com/shankulkarni/protoc-gen-zap/zap"
 	"strings"
 )
 
@@ -36,8 +36,8 @@ func (m *zapGen) Execute(targets map[string]pgs.File, packages map[string]pgs.Pa
 
 			// .<package>.<ParentMessage>.<ChildMessage>
 			fqName := msg.FullyQualifiedName()
-			name := strings.ReplaceAll(strings.TrimPrefix(fqName, fmt.Sprintf(".%s.", msg.Package().ProtoName().String())), ".", "_")
-			mp.Name = name
+			messageName := strings.ReplaceAll(strings.TrimPrefix(fqName, fmt.Sprintf(".%s.", msg.Package().ProtoName().String())), ".", "_")
+			mp.Name = messageName
 
 			list := make([]zapField, len(f.AllMessages()))
 
@@ -49,9 +49,15 @@ func (m *zapGen) Execute(targets map[string]pgs.File, packages map[string]pgs.Pa
 					m.Log(err)
 				}
 
+				var fieldName string
+				if v.InOneOf() {
+					fieldName = fmt.Sprintf("Get%s()", v.Name().UpperCamelCase().String())
+				} else {
+					fieldName = v.Name().UpperCamelCase().String()
+				}
 				r := zapField{
 					Redact:      redact,
-					Name:        v.Name().UpperCamelCase().String(),
+					Name:        fieldName,
 					Type:        v.Descriptor().Type.String(),
 					Label:       v.Descriptor().GetLabel().String(),
 					TypeName:    v.Descriptor().GetTypeName(),
