@@ -295,7 +295,7 @@ func (u *{{.Name}}) MarshalLogObject(enc zapcore.ObjectEncoder) error {
                     {{if .FType.IsRepeated}}
                         {{.Name}}ArrMarshaller := func (enc zapcore.ArrayEncoder) error {
                                 for _, v := range u.{{.Accessor}}{
-                                    enc.AppendString(string(v))
+                                    enc.AppendString(v.String())
 
                                 }
                                 return nil
@@ -303,7 +303,7 @@ func (u *{{.Name}}) MarshalLogObject(enc zapcore.ObjectEncoder) error {
                             enc.AddArray("{{.Name}}", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
 
                     {{else}}
-                        enc.AddString("{{.Name}}", string(u.{{.Accessor}}))
+                        enc.AddString("{{.Name}}", u.{{.Accessor}}.String())
                     {{end}}
 
                 {{ else }}

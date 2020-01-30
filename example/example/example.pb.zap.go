@@ -37,6 +37,8 @@ func (u *User) MarshalLogObject(enc zapcore.ObjectEncoder) error {
 	}
 	enc.AddArray("list", zapcore.ArrayMarshalerFunc(listArrMarshaller))
 
+	enc.AddString("sex", u.Sex.String())
+
 	return nil
 }
 

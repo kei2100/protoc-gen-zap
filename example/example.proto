@@ -15,7 +15,14 @@ message User {
     repeated string blocked = 9;
     map<string, string> extra = 10;
     repeated ServiceMsg list =11;
+    Sex sex = 12;
 
+    enum Sex {
+        SEX_NOT_KNOWN      = 0;
+        SEX_MALE           = 1;
+        SEX_FEMALE         = 2;
+        SEX_NOT_APPLICABLE = 9;
+    }
 }
 
 message Parent {
