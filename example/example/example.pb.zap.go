@@ -3,7 +3,9 @@
 package example
 
 import (
+	"github.com/golang/protobuf/ptypes"
 	"go.uber.org/zap/zapcore"
+	"time"
 )
 
 func (u *User) MarshalLogObject(enc zapcore.ObjectEncoder) error {
@@ -59,9 +61,9 @@ func (u *Event) MarshalLogObject(enc zapcore.ObjectEncoder) error {
 
 	enc.AddString("Id:", u.Id)
 
-	enc.AddObject("GetUpdate():", u.GetUpdate())
+	enc.AddObject("Update:", u.GetUpdate())
 
-	enc.AddObject("GetDelete():", u.GetDelete())
+	enc.AddObject("Delete:", u.GetDelete())
 
 	return nil
 }

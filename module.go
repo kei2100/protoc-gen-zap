@@ -49,15 +49,16 @@ func (m *zapGen) Execute(targets map[string]pgs.File, packages map[string]pgs.Pa
 					m.Log(err)
 				}
 
-				var fieldName string
+				var accessor string
 				if v.InOneOf() {
-					fieldName = fmt.Sprintf("Get%s()", v.Name().UpperCamelCase().String())
+					accessor = fmt.Sprintf("Get%s()", v.Name().UpperCamelCase().String())
 				} else {
-					fieldName = v.Name().UpperCamelCase().String()
+					accessor = v.Name().UpperCamelCase().String()
 				}
 				r := zapField{
 					Redact:      redact,
-					Name:        fieldName,
+					Name:        v.Name().UpperCamelCase().String(),
+					Accessor:    accessor,
 					Type:        v.Descriptor().Type.String(),
 					Label:       v.Descriptor().GetLabel().String(),
 					TypeName:    v.Descriptor().GetTypeName(),
@@ -89,6 +90,7 @@ func (m *zapGen) Execute(targets map[string]pgs.File, packages map[string]pgs.Pa
 
 type zapField struct {
 	Name        string
+	Accessor    string
 	Type        string
 	Redact      bool
 	Label       string

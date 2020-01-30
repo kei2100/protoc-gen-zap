@@ -13,7 +13,7 @@ func (u *{{.Name}}) MarshalLogObject(enc zapcore.ObjectEncoder) error {
 
                     {{if .FType.IsRepeated}}
                             {{.Name}}ArrMarshaller := func (enc zapcore.ArrayEncoder) error {
-                                for _, v := range u.{{.Name}}{
+                                for _, v := range u.{{.Accessor}}{
                                     enc.AppendFloat64(v)
 
                                 }
@@ -21,14 +21,14 @@ func (u *{{.Name}}) MarshalLogObject(enc zapcore.ObjectEncoder) error {
                             }
                             enc.AddArray("{{.Name}}:", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
                     {{else}}
-                        enc.AddFloat64("{{.Name}}:", u.{{.Name}})
+                        enc.AddFloat64("{{.Name}}:", u.{{.Accessor}})
                     {{end}}
 
 
                 {{ else if eq .Type "TYPE_FLOAT"}}
                     {{if .FType.IsRepeated}}
                             {{.Name}}ArrMarshaller := func (enc zapcore.ArrayEncoder) error {
-                                for _, v := range u.{{.Name}}{
+                                for _, v := range u.{{.Accessor}}{
                                     enc.AppendFloat32(v)
 
                                 }
@@ -36,14 +36,14 @@ func (u *{{.Name}}) MarshalLogObject(enc zapcore.ObjectEncoder) error {
                             }
                             enc.AddArray("{{.Name}}:", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
                     {{else}}
-                        enc.AddFloat32("{{.Name}}:", u.{{.Name}})
+                        enc.AddFloat32("{{.Name}}:", u.{{.Accessor}})
                     {{end}}
 
 
                 {{ else if eq .Type "TYPE_INT64"}}
                     {{if .FType.IsRepeated}}
                         {{.Name}}ArrMarshaller := func (enc zapcore.ArrayEncoder) error {
-                                for _, v := range u.{{.Name}}{
+                                for _, v := range u.{{.Accessor}}{
                                     enc.AppendInt64(v)
 
                                 }
@@ -52,14 +52,14 @@ func (u *{{.Name}}) MarshalLogObject(enc zapcore.ObjectEncoder) error {
                             enc.AddArray("{{.Name}}:", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
 
                     {{else}}
-                        enc.AddInt64("{{.Name}}:", u.{{.Name}})
+                        enc.AddInt64("{{.Name}}:", u.{{.Accessor}})
                     {{end}}
 
 
                 {{ else if eq .Type "TYPE_UINT64"}}
                     {{if .FType.IsRepeated}}
                         {{.Name}}ArrMarshaller := func (enc zapcore.ArrayEncoder) error {
-                                for _, v := range u.{{.Name}}{
+                                for _, v := range u.{{.Accessor}}{
                                     enc.AppendUint64(v)
 
                                 }
@@ -68,14 +68,14 @@ func (u *{{.Name}}) MarshalLogObject(enc zapcore.ObjectEncoder) error {
                             enc.AddArray("{{.Name}}:", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
 
                     {{else}}
-                        enc.AddUint64("{{.Name}}:", u.{{.Name}})
+                        enc.AddUint64("{{.Name}}:", u.{{.Accessor}})
                     {{end}}
 
 
                 {{ else if eq .Type "TYPE_INT32"}}
                     {{if .FType.IsRepeated}}
                         {{.Name}}ArrMarshaller := func (enc zapcore.ArrayEncoder) error {
-                                for _, v := range u.{{.Name}}{
+                                for _, v := range u.{{.Accessor}}{
                                     enc.AppendInt32(v)
 
                                 }
@@ -84,14 +84,14 @@ func (u *{{.Name}}) MarshalLogObject(enc zapcore.ObjectEncoder) error {
                             enc.AddArray("{{.Name}}:", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
 
                     {{else}}
-                        enc.AddInt32("{{.Name}}:", u.{{.Name}})
+                        enc.AddInt32("{{.Name}}:", u.{{.Accessor}})
                     {{end}}
 
 
                 {{ else if eq .Type "TYPE_FIXED64"}}
                     {{if .FType.IsRepeated}}
                         {{.Name}}ArrMarshaller := func (enc zapcore.ArrayEncoder) error {
-                                for _, v := range u.{{.Name}}{
+                                for _, v := range u.{{.Accessor}}{
                                     enc.AppendUint64(v)
 
                                 }
@@ -100,14 +100,14 @@ func (u *{{.Name}}) MarshalLogObject(enc zapcore.ObjectEncoder) error {
                             enc.AddArray("{{.Name}}:", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
 
                     {{else}}
-                        enc.AddUint64("{{.Name}}:", u.{{.Name}})
+                        enc.AddUint64("{{.Name}}:", u.{{.Accessor}})
                     {{end}}
 
 
                 {{ else if eq .Type "TYPE_FIXED32"}}
                     {{if .FType.IsRepeated}}
                         {{.Name}}ArrMarshaller := func (enc zapcore.ArrayEncoder) error {
-                                for _, v := range u.{{.Name}}{
+                                for _, v := range u.{{.Accessor}}{
                                     enc.AppendUint32(v)
 
                                 }
@@ -116,14 +116,14 @@ func (u *{{.Name}}) MarshalLogObject(enc zapcore.ObjectEncoder) error {
                             enc.AddArray("{{.Name}}:", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
 
                     {{else}}
-                        enc.AddUint32("{{.Name}}:", u.{{.Name}})
+                        enc.AddUint32("{{.Name}}:", u.{{.Accessor}})
                     {{end}}
 
 
                 {{ else if eq .Type "TYPE_BOOL"}}
                     {{if .FType.IsRepeated}}
                         {{.Name}}ArrMarshaller := func (enc zapcore.ArrayEncoder) error {
-                                for _, v := range u.{{.Name}}{
+                                for _, v := range u.{{.Accessor}}{
                                     enc.AppendBool(v)
 
                                 }
@@ -132,14 +132,14 @@ func (u *{{.Name}}) MarshalLogObject(enc zapcore.ObjectEncoder) error {
                             enc.AddArray("{{.Name}}:", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
 
                     {{else}}
-                        enc.AddBool("{{.Name}}:", u.{{.Name}})
+                        enc.AddBool("{{.Name}}:", u.{{.Accessor}})
                     {{end}}
 
 
                 {{ else if eq .Type "TYPE_STRING"}}
                     {{if .FType.IsRepeated}}
                         {{.Name}}ArrMarshaller := func (enc zapcore.ArrayEncoder) error {
-                                for _, v := range u.{{.Name}}{
+                                for _, v := range u.{{.Accessor}}{
                                     enc.AppendString(v)
 
                                 }
@@ -148,14 +148,14 @@ func (u *{{.Name}}) MarshalLogObject(enc zapcore.ObjectEncoder) error {
                             enc.AddArray("{{.Name}}:", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
 
                     {{else}}
-                        enc.AddString("{{.Name}}:", u.{{.Name}})
+                        enc.AddString("{{.Name}}:", u.{{.Accessor}})
                     {{end}}
 
 
                 {{ else if eq .Type "TYPE_BYTES"}}
                     {{if .FType.IsRepeated}}
                         {{.Name}}ArrMarshaller := func (enc zapcore.ArrayEncoder) error {
-                                for _, v := range u.{{.Name}}{
+                                for _, v := range u.{{.Accessor}}{
                                     enc.AppendByteString(v)
 
                                 }
@@ -164,14 +164,14 @@ func (u *{{.Name}}) MarshalLogObject(enc zapcore.ObjectEncoder) error {
                             enc.AddArray("{{.Name}}:", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
 
                     {{else}}
-                        enc.AddByteString("{{.Name}}:", u.{{.Name}})
+                        enc.AddByteString("{{.Name}}:", u.{{.Accessor}})
                     {{end}}
 
 
                 {{ else if eq .Type "TYPE_UINT32"}}
                     {{if .FType.IsRepeated}}
                         {{.Name}}ArrMarshaller := func (enc zapcore.ArrayEncoder) error {
-                                for _, v := range u.{{.Name}}{
+                                for _, v := range u.{{.Accessor}}{
                                     enc.AppendUint32(v)
 
                                 }
@@ -180,14 +180,14 @@ func (u *{{.Name}}) MarshalLogObject(enc zapcore.ObjectEncoder) error {
                             enc.AddArray("{{.Name}}:", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
 
                     {{else}}
-                        enc.AddUint32("{{.Name}}:", u.{{.Name}})
+                        enc.AddUint32("{{.Name}}:", u.{{.Accessor}})
                     {{end}}
 
 
                 {{ else if eq .Type "TYPE_SFIXED32"}}
                     {{if .FType.IsRepeated}}
                         {{.Name}}ArrMarshaller := func (enc zapcore.ArrayEncoder) error {
-                                for _, v := range u.{{.Name}}{
+                                for _, v := range u.{{.Accessor}}{
                                     enc.AppendInt32(v)
 
                                 }
@@ -196,14 +196,14 @@ func (u *{{.Name}}) MarshalLogObject(enc zapcore.ObjectEncoder) error {
                             enc.AddArray("{{.Name}}:", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
 
                     {{else}}
-                        enc.AddInt32("{{.Name}}:", u.{{.Name}})
+                        enc.AddInt32("{{.Name}}:", u.{{.Accessor}})
                     {{end}}
 
 
                 {{ else if eq .Type "TYPE_SFIXED64"}}
                     {{if .FType.IsRepeated}}
                         {{.Name}}ArrMarshaller := func (enc zapcore.ArrayEncoder) error {
-                                for _, v := range u.{{.Name}}{
+                                for _, v := range u.{{.Accessor}}{
                                     enc.AppendInt64(v)
 
                                 }
@@ -212,14 +212,14 @@ func (u *{{.Name}}) MarshalLogObject(enc zapcore.ObjectEncoder) error {
                             enc.AddArray("{{.Name}}:", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
 
                     {{else}}
-                        enc.AddInt64("{{.Name}}:", u.{{.Name}})
+                        enc.AddInt64("{{.Name}}:", u.{{.Accessor}})
                     {{end}}
 
 
                 {{ else if eq .Type "TYPE_SINT32"}}
                     {{if .FType.IsRepeated}}
                         {{.Name}}ArrMarshaller := func (enc zapcore.ArrayEncoder) error {
-                                for _, v := range u.{{.Name}}{
+                                for _, v := range u.{{.Accessor}}{
                                     enc.AppendInt32(v)
 
                                 }
@@ -228,14 +228,14 @@ func (u *{{.Name}}) MarshalLogObject(enc zapcore.ObjectEncoder) error {
                             enc.AddArray("{{.Name}}:", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
 
                     {{else}}
-                        enc.AddInt32("{{.Name}}:", u.{{.Name}})
+                        enc.AddInt32("{{.Name}}:", u.{{.Accessor}})
                     {{end}}
 
 
                 {{ else if eq .Type "TYPE_SINT64"}}
                     {{if .FType.IsRepeated}}
                         {{.Name}}ArrMarshaller := func (enc zapcore.ArrayEncoder) error {
-                                for _, v := range u.{{.Name}}{
+                                for _, v := range u.{{.Accessor}}{
                                     enc.AppendInt64(v)
 
                                 }
@@ -244,7 +244,7 @@ func (u *{{.Name}}) MarshalLogObject(enc zapcore.ObjectEncoder) error {
                             enc.AddArray("{{.Name}}:", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
 
                     {{else}}
-                        enc.AddInt64("{{.Name}}:", u.{{.Name}})
+                        enc.AddInt64("{{.Name}}:", u.{{.Accessor}})
                     {{end}}
 
                 {{ else if eq .Type "TYPE_MESSAGE"}}
@@ -252,7 +252,7 @@ func (u *{{.Name}}) MarshalLogObject(enc zapcore.ObjectEncoder) error {
                     {{if and  .SamePackage  ( not .FType.IsMap)}}
                         {{if .FType.IsRepeated}}
                             {{.Name}}ArrMarshaller := func (enc zapcore.ArrayEncoder) error {
-                                    for _, v := range u.{{.Name}}{
+                                    for _, v := range u.{{.Accessor}}{
                                         enc.AppendObject(v)
 
                                     }
@@ -261,21 +261,21 @@ func (u *{{.Name}}) MarshalLogObject(enc zapcore.ObjectEncoder) error {
                                 enc.AddArray("{{.Name}}:", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
 
                         {{else}}
-                            enc.AddObject("{{.Name}}:", u.{{.Name}})
+                            enc.AddObject("{{.Name}}:", u.{{.Accessor}})
 
                         {{end}}
 
                     {{else if  eq .TypeName ".google.protobuf.Timestamp"}}
-                          time{{.Name}},_ := ptypes.Timestamp(u.{{.Name}})
+                          time{{.Name}},_ := ptypes.Timestamp(u.{{.Accessor}})
                           enc.AddTime("{{.Name}}:", time{{.Name}})
                     {{else}}
-                        enc.AddReflected("{{.Name}}:", u.{{.Name}})
+                        enc.AddReflected("{{.Name}}:", u.{{.Accessor}})
                     {{end}}
 
                 {{ else if eq .Type "TYPE_ENUM"}}
                     {{if .FType.IsRepeated}}
                         {{.Name}}ArrMarshaller := func (enc zapcore.ArrayEncoder) error {
-                                for _, v := range u.{{.Name}}{
+                                for _, v := range u.{{.Accessor}}{
                                     enc.AppendString(string(v))
 
                                 }
@@ -284,11 +284,11 @@ func (u *{{.Name}}) MarshalLogObject(enc zapcore.ObjectEncoder) error {
                             enc.AddArray("{{.Name}}:", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
 
                     {{else}}
-                        enc.AddString("{{.Name}}:", string(u.{{.Name}}))
+                        enc.AddString("{{.Name}}:", string(u.{{.Accessor}}))
                     {{end}}
 
                 {{ else }}
-                    enc.AddReflected("{{.Name}}:", u.{{.Name}})
+                    enc.AddReflected("{{.Name}}:", u.{{.Accessor}})
                 {{end}}
 
              {{end}}
