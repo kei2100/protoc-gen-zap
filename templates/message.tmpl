@@ -19,9 +19,9 @@ func (u *{{.Name}}) MarshalLogObject(enc zapcore.ObjectEncoder) error {
                                 }
                                     return nil
                             }
-                            enc.AddArray("{{.Name}}:", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
+                            enc.AddArray("{{.Name}}", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
                     {{else}}
-                        enc.AddFloat64("{{.Name}}:", u.{{.Accessor}})
+                        enc.AddFloat64("{{.Name}}", u.{{.Accessor}})
                     {{end}}
 
 
@@ -34,9 +34,9 @@ func (u *{{.Name}}) MarshalLogObject(enc zapcore.ObjectEncoder) error {
                                 }
                                     return nil
                             }
-                            enc.AddArray("{{.Name}}:", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
+                            enc.AddArray("{{.Name}}", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
                     {{else}}
-                        enc.AddFloat32("{{.Name}}:", u.{{.Accessor}})
+                        enc.AddFloat32("{{.Name}}", u.{{.Accessor}})
                     {{end}}
 
 
@@ -49,10 +49,10 @@ func (u *{{.Name}}) MarshalLogObject(enc zapcore.ObjectEncoder) error {
                                 }
                                 return nil
                             }
-                            enc.AddArray("{{.Name}}:", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
+                            enc.AddArray("{{.Name}}", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
 
                     {{else}}
-                        enc.AddInt64("{{.Name}}:", u.{{.Accessor}})
+                        enc.AddInt64("{{.Name}}", u.{{.Accessor}})
                     {{end}}
 
 
@@ -65,10 +65,10 @@ func (u *{{.Name}}) MarshalLogObject(enc zapcore.ObjectEncoder) error {
                                 }
                                 return nil
                             }
-                            enc.AddArray("{{.Name}}:", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
+                            enc.AddArray("{{.Name}}", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
 
                     {{else}}
-                        enc.AddUint64("{{.Name}}:", u.{{.Accessor}})
+                        enc.AddUint64("{{.Name}}", u.{{.Accessor}})
                     {{end}}
 
 
@@ -81,10 +81,10 @@ func (u *{{.Name}}) MarshalLogObject(enc zapcore.ObjectEncoder) error {
                                 }
                                 return nil
                             }
-                            enc.AddArray("{{.Name}}:", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
+                            enc.AddArray("{{.Name}}", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
 
                     {{else}}
-                        enc.AddInt32("{{.Name}}:", u.{{.Accessor}})
+                        enc.AddInt32("{{.Name}}", u.{{.Accessor}})
                     {{end}}
 
 
@@ -97,10 +97,10 @@ func (u *{{.Name}}) MarshalLogObject(enc zapcore.ObjectEncoder) error {
                                 }
                                 return nil
                             }
-                            enc.AddArray("{{.Name}}:", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
+                            enc.AddArray("{{.Name}}", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
 
                     {{else}}
-                        enc.AddUint64("{{.Name}}:", u.{{.Accessor}})
+                        enc.AddUint64("{{.Name}}", u.{{.Accessor}})
                     {{end}}
 
 
@@ -113,10 +113,10 @@ func (u *{{.Name}}) MarshalLogObject(enc zapcore.ObjectEncoder) error {
                                 }
                                 return nil
                             }
-                            enc.AddArray("{{.Name}}:", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
+                            enc.AddArray("{{.Name}}", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
 
                     {{else}}
-                        enc.AddUint32("{{.Name}}:", u.{{.Accessor}})
+                        enc.AddUint32("{{.Name}}", u.{{.Accessor}})
                     {{end}}
 
 
@@ -129,10 +129,10 @@ func (u *{{.Name}}) MarshalLogObject(enc zapcore.ObjectEncoder) error {
                                 }
                                 return nil
                             }
-                            enc.AddArray("{{.Name}}:", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
+                            enc.AddArray("{{.Name}}", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
 
                     {{else}}
-                        enc.AddBool("{{.Name}}:", u.{{.Accessor}})
+                        enc.AddBool("{{.Name}}", u.{{.Accessor}})
                     {{end}}
 
 
@@ -145,10 +145,10 @@ func (u *{{.Name}}) MarshalLogObject(enc zapcore.ObjectEncoder) error {
                                 }
                                 return nil
                             }
-                            enc.AddArray("{{.Name}}:", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
+                            enc.AddArray("{{.Name}}", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
 
                     {{else}}
-                        enc.AddString("{{.Name}}:", u.{{.Accessor}})
+                        enc.AddString("{{.Name}}", u.{{.Accessor}})
                     {{end}}
 
 
@@ -161,10 +161,10 @@ func (u *{{.Name}}) MarshalLogObject(enc zapcore.ObjectEncoder) error {
                                 }
                                 return nil
                             }
-                            enc.AddArray("{{.Name}}:", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
+                            enc.AddArray("{{.Name}}", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
 
                     {{else}}
-                        enc.AddByteString("{{.Name}}:", u.{{.Accessor}})
+                        enc.AddByteString("{{.Name}}", u.{{.Accessor}})
                     {{end}}
 
 
@@ -177,10 +177,10 @@ func (u *{{.Name}}) MarshalLogObject(enc zapcore.ObjectEncoder) error {
                                 }
                                 return nil
                             }
-                            enc.AddArray("{{.Name}}:", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
+                            enc.AddArray("{{.Name}}", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
 
                     {{else}}
-                        enc.AddUint32("{{.Name}}:", u.{{.Accessor}})
+                        enc.AddUint32("{{.Name}}", u.{{.Accessor}})
                     {{end}}
 
 
@@ -193,10 +193,10 @@ func (u *{{.Name}}) MarshalLogObject(enc zapcore.ObjectEncoder) error {
                                 }
                                 return nil
                             }
-                            enc.AddArray("{{.Name}}:", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
+                            enc.AddArray("{{.Name}}", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
 
                     {{else}}
-                        enc.AddInt32("{{.Name}}:", u.{{.Accessor}})
+                        enc.AddInt32("{{.Name}}", u.{{.Accessor}})
                     {{end}}
 
 
@@ -209,10 +209,10 @@ func (u *{{.Name}}) MarshalLogObject(enc zapcore.ObjectEncoder) error {
                                 }
                                 return nil
                             }
-                            enc.AddArray("{{.Name}}:", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
+                            enc.AddArray("{{.Name}}", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
 
                     {{else}}
-                        enc.AddInt64("{{.Name}}:", u.{{.Accessor}})
+                        enc.AddInt64("{{.Name}}", u.{{.Accessor}})
                     {{end}}
 
 
@@ -225,10 +225,10 @@ func (u *{{.Name}}) MarshalLogObject(enc zapcore.ObjectEncoder) error {
                                 }
                                 return nil
                             }
-                            enc.AddArray("{{.Name}}:", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
+                            enc.AddArray("{{.Name}}", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
 
                     {{else}}
-                        enc.AddInt32("{{.Name}}:", u.{{.Accessor}})
+                        enc.AddInt32("{{.Name}}", u.{{.Accessor}})
                     {{end}}
 
 
@@ -241,16 +241,16 @@ func (u *{{.Name}}) MarshalLogObject(enc zapcore.ObjectEncoder) error {
                                 }
                                 return nil
                             }
-                            enc.AddArray("{{.Name}}:", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
+                            enc.AddArray("{{.Name}}", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
 
                     {{else}}
-                        enc.AddInt64("{{.Name}}:", u.{{.Accessor}})
+                        enc.AddInt64("{{.Name}}", u.{{.Accessor}})
                     {{end}}
 
                 {{ else if eq .Type "TYPE_MESSAGE"}}
                     {{if .FType.IsMap }}
                         // TODO optimize map value type
-                        enc.AddReflected("{{.Name}}:", u.{{.Accessor}})
+                        enc.AddReflected("{{.Name}}", u.{{.Accessor}})
                     {{else if .SamePackage}}
                         {{if .FType.IsRepeated}}
                             {{.Name}}ArrMarshaller := func (enc zapcore.ArrayEncoder) error {
@@ -259,15 +259,15 @@ func (u *{{.Name}}) MarshalLogObject(enc zapcore.ObjectEncoder) error {
                                     }
                                     return nil
                                 }
-                                enc.AddArray("{{.Name}}:", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
+                                enc.AddArray("{{.Name}}", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
 
                         {{else}}
-                            enc.AddObject("{{.Name}}:", u.{{.Accessor}})
+                            enc.AddObject("{{.Name}}", u.{{.Accessor}})
                         {{end}}
 
                     {{else if  eq .TypeName ".google.protobuf.Timestamp"}}
                           time{{.Name}},_ := ptypes.Timestamp(u.{{.Accessor}})
-                          enc.AddTime("{{.Name}}:", time{{.Name}})
+                          enc.AddTime("{{.Name}}", time{{.Name}})
                     {{else}}
                         {{if .FType.IsRepeated}}
                             {{.Name}}ArrMarshaller := func (enc zapcore.ArrayEncoder) error {
@@ -280,13 +280,13 @@ func (u *{{.Name}}) MarshalLogObject(enc zapcore.ObjectEncoder) error {
                                 }
                                 return nil
                             }
-                            enc.AddArray("{{.Name}}:", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
+                            enc.AddArray("{{.Name}}", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
 
                         {{else}}
                             if obj, ok := interface{}(u.{{.Accessor}}).(zapcore.ObjectMarshaler); ok {
-                                enc.AddObject("{{.Name}}:", obj)
+                                enc.AddObject("{{.Name}}", obj)
                             } else {
-                                enc.AddReflected("{{.Name}}:", u.{{.Accessor}})
+                                enc.AddReflected("{{.Name}}", u.{{.Accessor}})
                             }
                         {{end}}
                     {{end}}
@@ -300,17 +300,17 @@ func (u *{{.Name}}) MarshalLogObject(enc zapcore.ObjectEncoder) error {
                                 }
                                 return nil
                             }
-                            enc.AddArray("{{.Name}}:", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
+                            enc.AddArray("{{.Name}}", zapcore.ArrayMarshalerFunc({{.Name}}ArrMarshaller))
 
                     {{else}}
-                        enc.AddString("{{.Name}}:", string(u.{{.Accessor}}))
+                        enc.AddString("{{.Name}}", string(u.{{.Accessor}}))
                     {{end}}
 
                 {{ else }}
                     if obj, ok := interface{}(u.{{.Accessor}}).(zapcore.ObjectMarshaler); ok {
-                        enc.AddObject("{{.Name}}:", obj)
+                        enc.AddObject("{{.Name}}", obj)
                     } else {
-                        enc.AddReflected("{{.Name}}:", u.{{.Accessor}})
+                        enc.AddReflected("{{.Name}}", u.{{.Accessor}})
                     }
                 {{end}}
 
