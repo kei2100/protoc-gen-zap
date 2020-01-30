@@ -5,6 +5,7 @@ package example
 import (
 	"github.com/golang/protobuf/ptypes"
 	"go.uber.org/zap/zapcore"
+	"time"
 )
 
 func (u *User) MarshalLogObject(enc zapcore.ObjectEncoder) error {
@@ -28,9 +29,6 @@ func (u *User) MarshalLogObject(enc zapcore.ObjectEncoder) error {
 	enc.AddArray("Blocked:", zapcore.ArrayMarshalerFunc(BlockedArrMarshaller))
 
 	enc.AddReflected("Extra:", u.Extra)
-
-	timeHireDate, _ := ptypes.Timestamp(u.HireDate)
-	enc.AddTime("HireDate:", timeHireDate)
 
 	ListArrMarshaller := func(enc zapcore.ArrayEncoder) error {
 		for _, v := range u.List {
