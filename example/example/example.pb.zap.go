@@ -3,9 +3,7 @@
 package example
 
 import (
-	"github.com/golang/protobuf/ptypes"
 	"go.uber.org/zap/zapcore"
-	"time"
 )
 
 func (u *User) MarshalLogObject(enc zapcore.ObjectEncoder) error {
@@ -28,7 +26,11 @@ func (u *User) MarshalLogObject(enc zapcore.ObjectEncoder) error {
 	}
 	enc.AddArray("Blocked:", zapcore.ArrayMarshalerFunc(BlockedArrMarshaller))
 
-	enc.AddReflected("Extra:", u.Extra)
+	if _, ok := interface{}(u.Extra).(zapcore.ObjectMarshaler); ok {
+		enc.AddObject("Extra:", u.Extra)
+	} else {
+		enc.AddReflected("Extra:", u.Extra)
+	}
 
 	ListArrMarshaller := func(enc zapcore.ArrayEncoder) error {
 		for _, v := range u.List {
