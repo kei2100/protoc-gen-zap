@@ -3,9 +3,7 @@
 package example
 
 import (
-	"github.com/golang/protobuf/ptypes"
 	"go.uber.org/zap/zapcore"
-	"time"
 )
 
 func (u *User) MarshalLogObject(enc zapcore.ObjectEncoder) error {
@@ -42,6 +40,18 @@ func (u *User) MarshalLogObject(enc zapcore.ObjectEncoder) error {
 	return nil
 }
 
+func (u *Parent) MarshalLogObject(enc zapcore.ObjectEncoder) error {
+	if u == nil {
+		return nil
+	}
+
+	enc.AddString("Id:", u.Id)
+
+	enc.AddObject("Child:", u.Child)
+
+	return nil
+}
+
 func (u *ServiceMsg) MarshalLogObject(enc zapcore.ObjectEncoder) error {
 	if u == nil {
 		return nil
@@ -50,6 +60,28 @@ func (u *ServiceMsg) MarshalLogObject(enc zapcore.ObjectEncoder) error {
 	enc.AddString("Id:", u.Id)
 
 	enc.AddString("Name:", u.Name)
+
+	return nil
+}
+
+func (u *Parent_Child) MarshalLogObject(enc zapcore.ObjectEncoder) error {
+	if u == nil {
+		return nil
+	}
+
+	enc.AddString("Id:", u.Id)
+
+	enc.AddObject("GrandChild:", u.GrandChild)
+
+	return nil
+}
+
+func (u *Parent_Child_GrandChild) MarshalLogObject(enc zapcore.ObjectEncoder) error {
+	if u == nil {
+		return nil
+	}
+
+	enc.AddString("Id:", u.Id)
 
 	return nil
 }
