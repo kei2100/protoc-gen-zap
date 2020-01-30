@@ -18,6 +18,19 @@ message User {
 
 }
 
+message Parent {
+    string id = 1;
+    Child child = 2;
+
+    message Child {
+        string id = 1;
+        GrandChild grand_child = 2;
+
+        message GrandChild {
+            string id = 1;
+        }
+    }
+}
 
 message ServiceMsg {
     string id = 1;

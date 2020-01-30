@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/lyft/protoc-gen-star"
 	"github.com/lyft/protoc-gen-star/lang/go"
 	"github.com/shankulkarni/protoc-gen-zap/zap"
@@ -32,7 +33,11 @@ func (m *zapGen) Execute(targets map[string]pgs.File, packages map[string]pgs.Pa
 
 			fields := msg.Fields()
 			mp := messageModel{}
-			mp.Name = msg.Name().UpperCamelCase().String()
+
+			// .<package>.<ParentMessage>.<ChildMessage>
+			fqName := msg.FullyQualifiedName()
+			name := strings.ReplaceAll(strings.TrimPrefix(fqName, fmt.Sprintf(".%s.", msg.Package().ProtoName().String())), ".", "_")
+			mp.Name = name
 
 			list := make([]zapField, len(f.AllMessages()))
 
