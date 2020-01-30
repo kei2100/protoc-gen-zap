@@ -269,7 +269,11 @@ func (u *{{.Name}}) MarshalLogObject(enc zapcore.ObjectEncoder) error {
                           time{{.Name}},_ := ptypes.Timestamp(u.{{.Accessor}})
                           enc.AddTime("{{.Name}}:", time{{.Name}})
                     {{else}}
-                        enc.AddReflected("{{.Name}}:", u.{{.Accessor}})
+                        if _, ok := interface{}(u.{{.Accessor}}).(zapcore.ObjectMarshaler); ok {
+                            enc.AddObject("{{.Name}}:", u.{{.Accessor}})
+                        } else {
+                            enc.AddReflected("{{.Name}}:", u.{{.Accessor}})
+                        }
                     {{end}}
 
                 {{ else if eq .Type "TYPE_ENUM"}}
@@ -288,7 +292,11 @@ func (u *{{.Name}}) MarshalLogObject(enc zapcore.ObjectEncoder) error {
                     {{end}}
 
                 {{ else }}
-                    enc.AddReflected("{{.Name}}:", u.{{.Accessor}})
+                    if _, ok := interface{}(u.{{.Accessor}}).(zapcore.ObjectMarshaler); ok {
+                        enc.AddObject("{{.Name}}:", u.{{.Accessor}})
+                    } else {
+                        enc.AddReflected("{{.Name}}:", u.{{.Accessor}})
+                    }
                 {{end}}
 
              {{end}}
