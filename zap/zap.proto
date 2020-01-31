@@ -4,7 +4,7 @@ package zap;
 
 import "google/protobuf/descriptor.proto";
 
-option go_package = "github.com/kei2100/protoc-gen-zap/zap;zappb";
+option go_package = "github.com/shankulkarni/protoc-gen-zap/zap;zappb";
 
 extend google.protobuf.FieldOptions {
     bool redact = 847847;

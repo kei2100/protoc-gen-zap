@@ -1,4 +1,4 @@
-module github.com/kei2100/protoc-gen-zap
+module github.com/shankulkarni/protoc-gen-zap
 
 require (
 	github.com/gobuffalo/buffalo-plugins v1.7.0 // indirect
@@ -10,7 +10,7 @@ require (
 	github.com/lyft/protoc-gen-star v0.4.2
 	go.uber.org/atomic v1.3.2 // indirect
 	go.uber.org/multierr v1.1.0 // indirect
-	go.uber.org/zap v1.9.1 // indirect
+	go.uber.org/zap v1.9.1
 	golang.org/x/sys v0.0.0-20181121002834-0cf1ed9e522b // indirect
 	golang.org/x/tools v0.0.0-20181120234846-b5f2cae84da8 // indirect
 )

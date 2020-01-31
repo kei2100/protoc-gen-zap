@@ -3,7 +3,9 @@
 package example
 
 import (
+	"github.com/golang/protobuf/ptypes"
 	"go.uber.org/zap/zapcore"
+	"time"
 )
 
 func (u *User) MarshalLogObject(enc zapcore.ObjectEncoder) error {
