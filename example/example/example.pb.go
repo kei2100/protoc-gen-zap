@@ -6,7 +6,7 @@ package example
 import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
-	_ "github.com/kei2100/protoc-gen-zap/zap"
+	_ "github.com/shankulkarni/protoc-gen-zap/zap"
 	math "math"
 )
 
